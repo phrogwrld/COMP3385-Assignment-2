@@ -1,0 +1,21 @@
+{
+  "name": "comp3385-assignment1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css-watch": "npx tailwindcss -i ./400007969/css/tailwind.css -o ./400007969/css/style.css --watch",
+    "css-build": "npx tailwindcss -i ./400007969/css/tailwind.css -o ./400007969/css/style.css --minify",
+    "format": "prettier --write \"./400007969/**/*.{php,js,html}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "@prettier/plugin-php": "^0.20.1",
+    "prettier": "^3.0.3"
+  }
+}

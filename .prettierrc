@@ -1,0 +1,14 @@
+{
+  "parser": "php",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": true,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "phpVersion": "8.2",
+  "braceStyle": "1tbs",
+  "trailingCommaPHP": true,
+  "plugins": ["@prettier/plugin-php"]
+}
