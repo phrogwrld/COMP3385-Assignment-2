@@ -4,6 +4,7 @@ namespace App\Core\Controller;
 
 use App\Core\Http\Request;
 use App\Core\Http\Response;
+use App\Core\View\View;
 
 abstract class BaseController {
 	protected $request;
@@ -23,5 +24,7 @@ abstract class BaseController {
 	}
 
 	public function view($view, $data = []) {
+		$this->response->html(View::render($view, $data))->send();
+		return $this;
 	}
 }

@@ -51,6 +51,17 @@ class Response {
 	}
 
 	/**
+	 * Set response content as HTML
+	 * @param string $html - HTML content
+	 * @return Response - Returns the Response object for method chaining
+	 */
+	public function html($html) {
+		$this->headers['Content-Type'] = 'text/html';
+		$this->content = $html;
+		return $this;
+	}
+
+	/**
 	 * Set the response status code
 	 * @param int $status - HTTP status code
 	 * @return Response - Returns the Response object for method chaining
