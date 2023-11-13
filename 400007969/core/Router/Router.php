@@ -66,11 +66,12 @@ class Router {
 	 * @param string $path The route URI
 	 * @param Closure|array $handler The route handler
 	 *
-	 * @return $this
+	 * @return Route The route object
 	 */
 	public function get(string $path, $handler) {
 		$this->allowed_methods('GET');
-		return $this->register('GET', $path, $handler);
+		$route = $this->register('GET', $path, $handler);
+		return $route;
 	}
 
 	/**
@@ -79,11 +80,12 @@ class Router {
 	 * @param string $path The route URI
 	 * @param Closure|array $handler The route handler
 	 *
-	 * @return $this
+	 * @return Route The route object
 	 */
 	public function post(string $path, $handler) {
 		$this->allowed_methods('POST');
-		return $this->register('POST', $path, $handler);
+		$route = $this->register('POST', $path, $handler);
+		return $route;
 	}
 
 	/**
@@ -96,7 +98,8 @@ class Router {
 	 */
 	public function put(string $path, $handler) {
 		$this->allowed_methods('PUT');
-		return $this->register('PUT', $path, $handler);
+		$route = $this->register('PUT', $path, $handler);
+		return $route;
 	}
 
 	/**
@@ -109,7 +112,8 @@ class Router {
 	 */
 	public function delete(string $path, $handler) {
 		$this->allowed_methods('DELETE');
-		return $this->register('DELETE', $path, $handler);
+		$route = $this->register('DELETE', $path, $handler);
+		return $route;
 	}
 
 	/**
@@ -119,7 +123,7 @@ class Router {
 	 * @param string $uri The route URI
 	 * @param Closure|array $handler The route handler
 	 *
-	 * @return $this
+	 * @return Route The route object
 	 *
 	 * @throws \InvalidArgumentException If the provided method is not allowed
 	 */
@@ -134,7 +138,7 @@ class Router {
 
 		$this->routes[$method][$route->getUri()] = $route;
 
-		return $this;
+		return $route;
 	}
 
 	/**
@@ -180,6 +184,15 @@ class Router {
 		$method = $route->getMethod();
 		$handler = $route->getHandler();
 		$action = $route->getAction();
+
+		$middleware = $route->getMiddleware();
+
+		foreach ($middleware as $m) {
+			$m->handle($this->request, $this->response, function ($req, $res) {
+				$this->request = $req;
+				$this->response = $res;
+			});
+		}
 
 		if (is_callable($method)) {
 			$method($this->request, $this->response);

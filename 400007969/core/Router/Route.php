@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Core\Router;
+use App\Core\Router\IMiddleware;
 use Closure;
 
 /**
@@ -25,6 +26,7 @@ class Route {
 	protected $handler;
 	protected $method;
 	protected $action;
+	protected $middleware;
 
 	/**
 	 * Route constructor.
@@ -35,6 +37,7 @@ class Route {
 	public function __construct(string $uri, array|Closure $handler) {
 		// Set and sanitize the URI, ensuring a default of '/' if empty
 		$this->uri = rtrim($uri, '/') ?: '/';
+		$this->middleware = [];
 		$this->loadHandler($handler);
 	}
 
@@ -71,6 +74,22 @@ class Route {
 		throw new \InvalidArgumentException('Invalid handler format');
 	}
 
+	public function middleware(...$middleware): self {
+    foreach ($middleware as $m) {
+        if (is_string($m)) {
+            $m = new $m(); // Instantiate the middleware class dynamically
+        }
+
+        if ($m instanceof IMiddleware) {
+            $this->middleware[] = $m;
+        } else {
+            // Handle the case where $m is not an instance of IMiddleware
+            throw new \InvalidArgumentException('Middleware must implement IMiddleware interface');
+        }
+    }
+    return $this;
+}
+
 	/**
 	 * Get the URI for the route.
 	 *
@@ -105,5 +124,14 @@ class Route {
 	 */
 	public function getAction(): ?string {
 		return $this->action;
+	}
+
+	/**
+	 * Get the middleware associated with the route.
+	 *
+	 * @return array The middleware associated with the route
+	 */
+	public function getMiddleware(): ?array {
+		return $this->middleware;
 	}
 }
