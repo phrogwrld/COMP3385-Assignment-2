@@ -75,20 +75,20 @@ class Route {
 	}
 
 	public function middleware(...$middleware): self {
-    foreach ($middleware as $m) {
-        if (is_string($m)) {
-            $m = new $m(); // Instantiate the middleware class dynamically
-        }
+		foreach ($middleware as $m) {
+			if (is_string($m)) {
+				$m = new $m(); // Instantiate the middleware class dynamically
+			}
 
-        if ($m instanceof IMiddleware) {
-            $this->middleware[] = $m;
-        } else {
-            // Handle the case where $m is not an instance of IMiddleware
-            throw new \InvalidArgumentException('Middleware must implement IMiddleware interface');
-        }
-    }
-    return $this;
-}
+			if ($m instanceof IMiddleware) {
+				$this->middleware[] = $m;
+			} else {
+				// Handle the case where $m is not an instance of IMiddleware
+				throw new \InvalidArgumentException('Middleware must implement IMiddleware interface');
+			}
+		}
+		return $this;
+	}
 
 	/**
 	 * Get the URI for the route.
