@@ -20,9 +20,9 @@
   
 ## Validation  
 
-- [ ] Allow for custom validation rules
-- [ ] Default validation rules (basic ones)
-- [ ] ALlow for custom error messages
+- [X] Allow for custom validation rules
+- [X] Default validation rules (basic ones)
+- [X] ALlow for custom error messages
 - [ ] Default error messages
 - [ ] Form Validation
 
