@@ -4,7 +4,9 @@ namespace App\Core;
 
 use App\Core\Http\Request;
 use App\Core\Http\Response;
+use App\Core\Http\Session;
 use App\Core\Router\Router;
+use App\Core\Validator\RuleManager;
 use App\Core\View\ParserManager;
 
 /**
@@ -52,6 +54,8 @@ class Mimikyu {
 	public Request $request;
 	public Response $response;
 	public ParserManager $parserManager;
+	public RuleManager $ruleManager;
+	public Session $session;
 
 	/**
 	 * Mimikyu constructor.
@@ -62,6 +66,8 @@ class Mimikyu {
 		$this->response = new Response();
 		$this->router = new Router($this->request, $this->response);
 		$this->parserManager = new ParserManager();
+		$this->session = new Session();
+		$this->ruleManager = new RuleManager();
 	}
 
 	/**
@@ -84,5 +90,11 @@ class Mimikyu {
 
 	public function getParserManager() {
 		return $this->parserManager;
+	}
+
+	public function __get($name) {
+		if (property_exists($this, $name)) {
+			return $this->$name;
+		}
 	}
 }

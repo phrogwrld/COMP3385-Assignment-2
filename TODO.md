@@ -13,7 +13,7 @@
 
 ## Router
 
-- [ ] Router Middleware
+- [X] Router Middleware
   - [ ] Authentication through Middleware
   - [ ] Authorization through Middleware
   - [ ] CSRF Protection through Middleware

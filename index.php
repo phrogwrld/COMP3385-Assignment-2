@@ -30,6 +30,13 @@ require_once './400007969/core/View/Parsers/ForParser.php';
 require_once './400007969/core/View/Parsers/IfStatementParser.php';
 require_once './400007969/app/Middlewares/TestMiddleware.php';
 require_once './400007969/app/Middlewares/SecondTestMiddleware.php';
+require_once './400007969/core/Http/Session.php';
+require_once './400007969/core/Validator/RuleManager.php';
+require_once './400007969/core/Validator/Rules/IRule.php';
+require_once './400007969/core/Validator/Rules/RequiredRule.php';
+require_once './400007969/core/Validator/Rules/EmailRule.php';
+require_once './400007969/core/Validator/Rules/PasswordRule.php';
+require_once './400007969/core/Validator/Validator.php';
 
 
 $app = new Mimikyu();
