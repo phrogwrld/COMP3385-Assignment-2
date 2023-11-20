@@ -2,6 +2,8 @@
 
 namespace App\Core\Validator;
 
+use App\Core\Mimikyu;
+
 class Validator {
 	/**
 	 * @var array
@@ -16,7 +18,7 @@ class Validator {
 	private $ruleManager;
 
 	public function __construct() {
-		$this->ruleManager = new RuleManager();
+		$this->ruleManager = Mimikyu::$app->getRuleManager();
 
 		$this->rules = $this->ruleManager->getRules();
 	}
@@ -39,7 +41,10 @@ class Validator {
 				}
 
 				if (!$ruleInstance->validate($field, $data[$field], $params)) {
-					$this->errors[$field][] = $ruleInstance->getErrorMessage();
+					if (isset($this->errors[$field])) {
+						continue;
+					}
+					$this->errors[$field] = $ruleInstance->getErrorMessage();
 				}
 			}
 		}
