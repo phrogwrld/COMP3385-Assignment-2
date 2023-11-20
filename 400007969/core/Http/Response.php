@@ -96,6 +96,17 @@ class Response {
 	}
 
 	/**
+	 * Redirect to a new URI
+	 *
+	 * @param string $uri - URI to redirect to
+	 * @param int $status - HTTP status code
+	 */
+	public function redirect($uri, $status = 302) {
+		$this->status($status);
+		$this->headers['Location'] = $uri;
+		$this->send();
+	}
+	/**
 	 * Set CORS headers
 	 * @param string $origin - Allowed origin
 	 * @param string $methods - Allowed HTTP methods
