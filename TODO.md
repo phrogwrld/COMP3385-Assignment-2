@@ -2,7 +2,7 @@
 
 ## Session
 
-- [ ] Session Management
+- [X] Session Management
   - [ ] Access Control
 
 ## Database
@@ -14,7 +14,7 @@
 ## Router
 
 - [X] Router Middleware
-  - [ ] Authentication through Middleware
+  - [X] Authentication through Middleware
   - [ ] Authorization through Middleware
   - [ ] CSRF Protection through Middleware
   
