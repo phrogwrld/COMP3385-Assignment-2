@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Core\Database\DatabaseConnection;
 use App\Core\Http\Request;
 use App\Core\Http\Response;
 use App\Core\Http\Session;
@@ -56,6 +57,7 @@ class Mimikyu {
 	public ParserManager $parserManager;
 	public RuleManager $ruleManager;
 	public Session $session;
+	public DatabaseConnection $db;
 
 	/**
 	 * Mimikyu constructor.
@@ -68,6 +70,7 @@ class Mimikyu {
 		$this->parserManager = new ParserManager();
 		$this->session = new Session();
 		$this->ruleManager = new RuleManager();
+		$this->db = new DatabaseConnection();
 	}
 
 	/**
@@ -90,6 +93,10 @@ class Mimikyu {
 
 	public function getParserManager() {
 		return $this->parserManager;
+	}
+
+	public function getRuleManager() {
+		return $this->ruleManager;
 	}
 
 	public function __get($name) {
