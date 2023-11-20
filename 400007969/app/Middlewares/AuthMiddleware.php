@@ -15,8 +15,8 @@ class AuthMiddleware implements IMiddleware {
 			!Mimikyu::$app->session->hasValue('role')
 		) {
 			$res->redirect('/login');
-		} 
-    // else {
+		}
+		// else {
 		// 	$next();
 		// }
 	}
