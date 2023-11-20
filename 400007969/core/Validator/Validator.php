@@ -15,8 +15,8 @@ class Validator {
 
 	private $ruleManager;
 
-	public function __construct(RuleManager $ruleManager) {
-		$this->ruleManager = $ruleManager;
+	public function __construct() {
+		$this->ruleManager = new RuleManager();
 
 		$this->rules = $this->ruleManager->getRules();
 	}
