@@ -15,7 +15,7 @@
 
 - [X] Router Middleware
   - [X] Authentication through Middleware
-  - [ ] Authorization through Middleware
+  - [X] Authorization through Middleware
   - [ ] CSRF Protection through Middleware
   
 ## Validation  
