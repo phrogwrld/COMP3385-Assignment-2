@@ -13,7 +13,7 @@
 <body>
   <div class="bg-black min-h-screen flex flex-col">
     <div class="fixed flex h-16 w-full text-white p-4 justify-between items-center">
-      <a class="flex items-center" href="/400007969/index.php">
+      <a class="flex items-center" href="/dashboard">
         <img class="w-8 h-8" src="./400007969/public/logo.svg" alt="logo_here"> ACompany Research
       </a>
       <form id="logoutForm" action="/logout" method="POST">
