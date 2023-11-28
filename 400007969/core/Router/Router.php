@@ -151,6 +151,12 @@ class Router {
 		$uri = $this->request->getUri();
 		$method = $this->request->getMethod();
 
+		$query = parse_url($uri, PHP_URL_QUERY);
+
+		parse_str($query, $query);
+
+		$this->request->setQueryParams($query);
+
 		if (!isset($this->routes[$method])) {
 			$this->response->status(404);
 			return;
@@ -161,6 +167,13 @@ class Router {
 		if (isset($routes[$uri])) {
 			$this->handle($routes[$uri]);
 			return;
+		}
+
+		foreach ($routes as $route) {
+			if ($route->matches($uri)) {
+				$this->handle($route);
+				return;
+			}
 		}
 
 		$this->response->status(404);

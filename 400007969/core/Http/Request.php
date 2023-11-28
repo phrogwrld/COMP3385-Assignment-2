@@ -28,6 +28,7 @@ class Request {
 	private $params;
 	private $body;
 	private $headers;
+	protected $queryParams = [];
 
 	public function __construct() {
 		$this->uri = $_SERVER['REQUEST_URI'];
@@ -76,5 +77,23 @@ class Request {
 	 */
 	public function getHeader($header): ?string {
 		return $this->headers[$header] ?? null;
+	}
+
+	/**
+	 * Set query parameters.
+	 *
+	 * @param array $params The query parameters
+	 */
+	public function setQueryParams(array $params) {
+		$this->queryParams = $params;
+	}
+
+	/**
+	 * Get query parameters.
+	 *
+	 * @return array The query parameters
+	 */
+	public function getQueryParams() {
+		return $this->queryParams;
 	}
 }

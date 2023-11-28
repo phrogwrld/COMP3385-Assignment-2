@@ -91,6 +91,23 @@ class Route {
 	}
 
 	/**
+	 * Check if the route matches the given URI, considering query parameters.
+	 *
+	 * @param string $uri The URI to match against
+	 * @return bool True if the route matches, false otherwise
+	 */
+	public function matches(string $uri): bool {
+		$pattern = preg_replace('/\/\{(.*?)\}/', '/([^\/]+)', $this->uri);
+		$pattern = str_replace('/', '\/', $pattern);
+		$pattern = '/^' . $pattern . '$/';
+
+		// Extract the path without query parameters
+		$uriWithoutQuery = parse_url($uri, PHP_URL_PATH);
+
+		return preg_match($pattern, $uriWithoutQuery);
+	}
+
+	/**
 	 * Get the URI for the route.
 	 *
 	 * @return string The URI for the route

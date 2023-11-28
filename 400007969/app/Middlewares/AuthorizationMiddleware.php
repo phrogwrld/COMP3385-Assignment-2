@@ -19,12 +19,13 @@ final class AuthorizationMiddleware implements IMiddleware {
 
 		$rolesHierarchy = [Role::ResearchGroupManager, Role::ResearchStudyManager, Role::Researcher];
 
+		echo array_search($role, $rolesHierarchy) > array_search($this->requiredRole, $rolesHierarchy);
 
-    echo (array_search($role, $rolesHierarchy) > array_search($this->requiredRole, $rolesHierarchy));
-    
-
-    if (in_array($role, $rolesHierarchy) && (array_search($role, $rolesHierarchy) > array_search($this->requiredRole, $rolesHierarchy))) {
-      $res->redirect('/dashboard');
+		if (
+			in_array($role, $rolesHierarchy) &&
+			array_search($role, $rolesHierarchy) > array_search($this->requiredRole, $rolesHierarchy)
+		) {
+			$res->redirect('/dashboard');
 		}
 		// else {
 		// $next();
