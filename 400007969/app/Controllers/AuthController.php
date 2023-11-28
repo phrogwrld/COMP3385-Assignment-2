@@ -16,7 +16,6 @@ final class AuthController extends BaseController {
 	// }
 
 	public function renderLogin() {
-
 		if (Mimikyu::$app->session->hasValue('email')) {
 			$this->response->redirect('/dashboard');
 		}
@@ -62,7 +61,6 @@ final class AuthController extends BaseController {
 	}
 
 	public function renderRegister() {
-
 		if (Mimikyu::$app->session->hasValue('email')) {
 			$this->response->redirect('/dashboard');
 		}
