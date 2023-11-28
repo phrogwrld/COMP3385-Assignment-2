@@ -39,7 +39,7 @@ class RuleManager {
 	}
 
 	public function addRule(IRule $rule) {
-		if (is_a($rule ,IRule::class)) {
+		if (is_a($rule, IRule::class)) {
 			$this->rules[] = $rule;
 		} else {
 			throw new \InvalidArgumentException('All rules must implement the IRules interface');

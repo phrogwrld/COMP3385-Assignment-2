@@ -15,7 +15,7 @@ class ParserManager {
 	}
 
 	public function addParser(IParser $parser) {
-		if (is_a($parser ,IParser::class)) {
+		if (is_a($parser, IParser::class)) {
 			$this->parsers[] = $parser;
 		} else {
 			throw new \InvalidArgumentException('All parsers must implement the IParser interface');
