@@ -24,7 +24,7 @@ final class DashboardController extends BaseController {
 			Role::ResearchGroupManager->value => [
 				'View All Studies' => '/view',
 				'Create New Study' => '/create',
-				'Delete Previous Study' => '/delet',
+				'Delete Previous Study' => '/delete',
 				'Create New Researchers' => '/createResearcher',
 			],
 		];

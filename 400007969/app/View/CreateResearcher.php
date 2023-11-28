@@ -85,7 +85,7 @@
         </div>
 
         <div class="flex justify-between">
-        <a href="/" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+        <a href="/dashboard" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
               Back To Dashboard
           </a>
           <button name="register" type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg" value="Submit">
