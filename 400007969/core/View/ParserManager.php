@@ -3,7 +3,6 @@
 namespace App\Core\View;
 
 use App\Core\View\Parsers\IParser;
-use ReflectionClass;
 
 class ParserManager {
 	/**
@@ -16,8 +15,7 @@ class ParserManager {
 	}
 
 	public function addParser(IParser $parser) {
-		$reflection = new ReflectionClass($parser);
-		if ($reflection->implementsInterface(IParser::class)) {
+		if (is_a($parser ,IParser::class)) {
 			$this->parsers[] = $parser;
 		} else {
 			throw new \InvalidArgumentException('All parsers must implement the IParser interface');

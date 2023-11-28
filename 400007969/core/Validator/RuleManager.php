@@ -3,7 +3,6 @@
 namespace App\Core\Validator;
 
 use App\Core\Validator\Rules\IRule;
-use ReflectionClass;
 
 class RuleManager {
 	/**
@@ -40,8 +39,7 @@ class RuleManager {
 	}
 
 	public function addRule(IRule $rule) {
-		$reflection = new ReflectionClass($rule);
-		if ($reflection->implementsInterface(IRule::class)) {
+		if (is_a($rule ,IRule::class)) {
 			$this->rules[] = $rule;
 		} else {
 			throw new \InvalidArgumentException('All rules must implement the IRules interface');
