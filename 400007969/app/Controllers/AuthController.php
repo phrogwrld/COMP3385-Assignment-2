@@ -16,6 +16,11 @@ final class AuthController extends BaseController {
 	// }
 
 	public function renderLogin() {
+
+		if (Mimikyu::$app->session->hasValue('email')) {
+			$this->response->redirect('/dashboard');
+		}
+
 		$this->view('./400007969/app/View/Login.php', [
 			'title' => 'Login',
 		]);
@@ -57,6 +62,11 @@ final class AuthController extends BaseController {
 	}
 
 	public function renderRegister() {
+
+		if (Mimikyu::$app->session->hasValue('email')) {
+			$this->response->redirect('/dashboard');
+		}
+
 		$this->view('./400007969/app/View/Register.php', [
 			'title' => 'Register',
 		]);
