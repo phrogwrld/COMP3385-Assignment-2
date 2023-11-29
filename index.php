@@ -68,14 +68,18 @@ $app = new Mimikyu();
 $app->getRuleManager()->addRule(new UniqueUsername());
 $app->getRuleManager()->addRule(new PasswordExists());
 
-$app->router->get('/', function($req, $res) {
-  echo 'Hello World';
-  $res->status(StatusCode::ACCEPTED)->send();
-})->middleware(TestMiddleware::class, SecondTestMiddleware::class);
+// $app->router->get('/', function($req, $res) {
+//   echo 'Hello World';
+//   $res->status(StatusCode::ACCEPTED)->send();
+// })->middleware(TestMiddleware::class, SecondTestMiddleware::class);
 
 $app->router->get('/test', [TestController::class, 'index']);
 
 $app->router->get('/test2', [HomeController::class, 'index']);
+
+$app->router->get('/', function($req, $res) {
+  $res->redirect('/dashboard');
+});
 
 $app->router->get('/login', [AuthController::class, 'renderLogin']);
 
