@@ -80,6 +80,26 @@ class Request {
 	}
 
 	/**
+	 * Retrieves all headers from the request.
+	 *
+	 * @return array The request headers
+	 */
+	public function getHeaders(): array {
+		return $this->headers;
+	}
+
+	/**
+	 * Set a header.
+	 *
+	 * @param string $header The header name
+	 *
+	 * @param string $value The header value
+	 */
+	public function setHeader($header, $value) {
+		$this->headers[$header] = $value;
+	}
+
+	/**
 	 * Set query parameters.
 	 *
 	 * @param array $params The query parameters

@@ -46,7 +46,7 @@ class Response {
 	 */
 	public function json($data) {
 		$this->headers['Content-Type'] = 'application/json';
-		$this->content = json_encode($data);
+		$this->content = json_encode($data, JSON_PRETTY_PRINT);
 		return $this;
 	}
 

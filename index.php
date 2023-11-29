@@ -14,6 +14,7 @@ use App\Rules\UniqueUsername;
 use App\Middlewares\AuthorizationMiddleware;
 use App\Helpers\Role;
 use App\Controllers\CreateResearcherController;
+use App\Controllers\APIAuthController;
 
 require_once './400007969/core/Router/IMiddleware.php';
 require_once './400007969/core/Http/Request.php';
@@ -28,6 +29,7 @@ require_once './400007969/app/Controllers/TestController.php';
 require_once './400007969/core/Controller/BaseController.php';
 require_once './400007969/app/Controllers/HomeController.php';
 require_once './400007969/app/Controllers/AuthController.php';
+require_once './400007969/app/Controllers/APIAuthController.php';
 require_once './400007969/core/View/ParserManager.php';
 require_once './400007969/core/View/Parsers/IParser.php';
 require_once './400007969/core/View/View.php';
@@ -95,6 +97,8 @@ $app->router->get(
 $app->router->post(
   '/createResearcher', [CreateResearcherController::class, 'createResearcher']
 )->middleware(AuthMiddleware::class, new AuthorizationMiddleware(Role::ResearchGroupManager));
+
+$app->router->post('/api/login', [APIAuthController::class, 'login']);
 
 $app->router->fallback(function($_, $res) {
   echo '404';
