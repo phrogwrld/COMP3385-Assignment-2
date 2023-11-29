@@ -2,9 +2,9 @@
 
 namespace App\Middlewares;
 
-use App\Core\Http\Request;
-use App\Core\Http\Response;
-use App\Core\Router\IMiddleware;
+use App\Framework\Http\Request;
+use App\Framework\Http\Response;
+use App\Framework\Router\IMiddleware;
 
 class TestMiddleware implements IMiddleware {
 	public function handle(Request $req, Response $res, $next) {

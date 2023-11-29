@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use App\Core\Mimikyu;
-use App\Core\Validator\Rules\IRule;
+use App\Framework\Mimikyu;
+use App\Framework\Validator\Rules\IRule;
 
 final class PasswordExists implements IRule {
 	protected $field;

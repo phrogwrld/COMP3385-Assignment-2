@@ -2,8 +2,8 @@
 
 namespace App\Middlewares;
 
-use App\Core\Router\IMiddleware;
-use App\Core\Mimikyu;
+use App\Framework\Router\IMiddleware;
+use App\Framework\Mimikyu;
 use App\Helpers\Role;
 
 final class AuthorizationMiddleware implements IMiddleware {

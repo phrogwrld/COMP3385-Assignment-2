@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller\BaseController;
-use App\Core\Mimikyu;
-use App\Core\Validator\Validator;
+use App\Framework\Controller\BaseController;
+use App\Framework\Mimikyu;
+use App\Framework\Validator\Validator;
 use App\Models\Entity\User;
 use App\Helpers\Role;
 use App\Models\Repository\UserRepository;

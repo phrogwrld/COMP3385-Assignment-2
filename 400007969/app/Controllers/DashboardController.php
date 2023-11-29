@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller\BaseController;
-use App\Core\Mimikyu;
+use App\Framework\Controller\BaseController;
+use App\Framework\Mimikyu;
 use App\Helpers\Role;
 
 final class DashboardController extends BaseController {

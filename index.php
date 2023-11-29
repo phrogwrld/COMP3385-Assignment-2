@@ -1,7 +1,7 @@
 <?php
 
-use App\Core\Http\StatusCode;
-use App\Core\Mimikyu;
+use App\Framework\Http\StatusCode;
+use App\Framework\Mimikyu;
 use App\Controllers\TestController;
 use App\Controllers\HomeController;
 use App\Middlewares\SecondTestMiddleware;

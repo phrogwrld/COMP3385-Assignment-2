@@ -2,7 +2,7 @@
 
 namespace App\Models\Repository;
 
-use App\Core\Database\DatabaseConnection;
+use App\Framework\Database\DatabaseConnection;
 use App\Helpers\Role;
 use App\Models\IRepository;
 use App\Models\Entity\User;
