@@ -58,19 +58,64 @@ class Mimikyu {
 	public RuleManager $ruleManager;
 	public Session $session;
 	public DatabaseConnection $db;
+	private array $config;
 
 	/**
 	 * Mimikyu constructor.
 	 */
 	public function __construct() {
 		self::$app = $this;
+		$this->loadConfig();
 		$this->request = new Request();
 		$this->response = new Response();
 		$this->router = new Router($this->request, $this->response);
 		$this->parserManager = new ParserManager();
 		$this->session = new Session();
 		$this->ruleManager = new RuleManager();
-		$this->db = new DatabaseConnection();
+		$this->db = new DatabaseConnection(
+			$this->getDatabaseConfig()['host'],
+			$this->getDatabaseConfig()['port'],
+			$this->getDatabaseConfig()['username'],
+			$this->getDatabaseConfig()['password'],
+			$this->getDatabaseConfig()['database'],
+		);
+	}
+
+	/**
+	 * Loads the configuration file.
+	 *
+	 * @return void
+	 */
+	private function loadConfig() {
+		$configFile = str_replace(
+			'framework\\',
+			'',
+			__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.ini',
+		);
+		if (!file_exists($configFile)) {
+			throw new \RuntimeException('Configuration file not found');
+		} else {
+			$this->config = parse_ini_file($configFile, true);
+		}
+	}
+
+	/**
+	 * Get a specific configuration value by key.
+	 *
+	 * @param string $key The key of the configuration value
+	 * @return mixed|null The configuration value or null if the key is not found
+	 */
+	public function getConfig(string $key) {
+		return $this->config[$key] ?? null;
+	}
+
+	/**
+	 * Get the database configuration.
+	 *
+	 * @return array The database configuration
+	 */
+	public function getDatabaseConfig(): array {
+		return $this->config['database'] ?? [];
 	}
 
 	/**

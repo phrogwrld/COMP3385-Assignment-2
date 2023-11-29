@@ -3,6 +3,7 @@
 namespace App\Framework\Database;
 
 use App\Framework\Database\DatabaseException;
+use App\Framework\Mimikyu;
 use PDO;
 use PDOException;
 
@@ -40,7 +41,7 @@ class DatabaseConnection {
 	 *
 	 * @var string
 	 */
-	private string $database = 'user_management_system';
+	private string $database = '';
 
 	/**
 	 * The PDO connection object.
@@ -58,13 +59,7 @@ class DatabaseConnection {
 	 * @param ?string $password The password for the database connection.
 	 * @param string $database The name of the database to connect to.
 	 */
-	public function __construct(
-		?string $host = 'localhost',
-		?int $port = 3306,
-		?string $username = 'root',
-		?string $password = null,
-		string $database = 'user_management_system',
-	) {
+	public function __construct(string $host, int $port, string $username, string $password, string $database) {
 		$this->host = $host ?? $this->host;
 		$this->port = $port ?? $this->port;
 		$this->username = $username ?? $this->username;
