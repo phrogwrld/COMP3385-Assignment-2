@@ -17,7 +17,7 @@ use Closure;
  * @method put(string $path, $handler) Define a PUT route
  * @method delete(string $path, $handler) Define a DELETE route
  */
-class Router {
+class Router implements IRouter {
 	protected $routes = [];
 
 	protected $request;

@@ -20,7 +20,7 @@ use Closure;
  * @method array|Closure getMethod() Retrieves the method for the handler
  * @method string|null getAction() Retrieves the action associated with the handler
  */
-class Route {
+class Route implements IRoute {
 	public const CONTROLLER_DELIMITER = '@';
 	protected $uri;
 	protected $handler;
