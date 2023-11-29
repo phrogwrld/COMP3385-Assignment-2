@@ -40,21 +40,21 @@
         <div class="flex flex-auto mb-7 justify-end">
           <label class="flex pr-2 min-w-[95px] font-semibold items-center">Username: </label>
           <div class="flex flex-col w-full relative">
-            <input class="flex-1 h-10 py-2 px-3 rounded-lg text-black w-full border border-blue-100 focus:border-blue-200 focus:ring focus:outline-none" name="username" />
+            <input class="flex-1 h-10 py-2 px-3 rounded-lg text-black w-full border border-blue-100 focus:border-blue-200 focus:ring focus:outline-none" name="username" value="{{ $data['createUsername'] }}" />
           </div>
         </div>
 
         <div class="flex flex-auto mb-7 justify-end">
           <label class="flex pr-2 min-w-[95px] font-semibold items-center">Email: </label>
           <div class="flex flex-col w-full relative">
-            <input class="flex-1 h-10 py-2 px-3 rounded-lg text-black w-full border border-blue-100 focus:border-blue-200 focus:ring focus:outline-none" name="email" />
+            <input class="flex-1 h-10 py-2 px-3 rounded-lg text-black w-full border border-blue-100 focus:border-blue-200 focus:ring focus:outline-none" name="email" value="{{ $data['createEmail'] }}" />
           </div>
         </div>
 
         <div class="flex flex-auto mb-7 justify-end">
           <label class="flex pr-2 min-w-[95px] font-semibold items-center">Password: </label>
           <div class="flex flex-col w-full relative">
-            <input class="flex-1 h-10 py-2 px-3 rounded-lg text-black w-full border border-blue-100 focus:border-blue-200 focus:ring focus:outline-none" name="password" />
+            <input class="flex-1 h-10 py-2 px-3 rounded-lg text-black w-full border border-blue-100 focus:border-blue-200 focus:ring focus:outline-none" name="password" value="{{ $data['createPassword'] }}" />
           </div>
         </div>
 

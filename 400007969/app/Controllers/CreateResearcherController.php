@@ -30,10 +30,19 @@ final class createResearcherController extends BaseController {
 			'email' => $email,
 			'username' => $username,
 			'options' => $options,
+			'createEmail' => null,
+			'createUsername' => null,
+			'createPassword' => null,
 		]);
 	}
 
 	public function createResearcher() {
+		$role = Mimikyu::$app->session->getValue('role');
+		$role = Role::from($role);
+
+		$email = Mimikyu::$app->session->getValue('email');
+		$username = Mimikyu::$app->session->getValue('username');
+
 		// options array that passes all the roles in the enun
 		$options = [
 			Role::Researcher->value,
@@ -41,19 +50,19 @@ final class createResearcherController extends BaseController {
 			// Role::ResearchGroupManager->value,
 		];
 
-		$email = $_POST['email'];
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		$role = $_POST['role'];
+		$createEmail = $_POST['email'];
+		$createUsername = $_POST['username'];
+		$createPassword = $_POST['password'];
+		$createRole = $_POST['role'];
 
 		$validator = new Validator();
 
 		$validator->validate(
 			[
-				'email' => $email,
-				'username' => $username,
-				'password' => $password,
-				'role' => $role,
+				'email' => $createEmail,
+				'username' => $createUsername,
+				'password' => $createPassword,
+				'role' => $createRole,
 			],
 			[
 				'email' => 'required|email',
@@ -64,10 +73,6 @@ final class createResearcherController extends BaseController {
 		);
 
 		if ($validator->hasErrors()) {
-			foreach ($validator->getErrors() as $error) {
-				echo $error;
-			}
-
 			return $this->view('./400007969/app/View/createResearcher.php', [
 				'title' => 'Admin | Create Researcher',
 				'errors' => $validator->getErrors(),
@@ -75,20 +80,23 @@ final class createResearcherController extends BaseController {
 				'email' => $email,
 				'username' => $username,
 				'options' => $options,
+				'createEmail' => $createEmail ? $createEmail : null,
+				'createUsername' => $createUsername ? $createUsername : null,
+				'createPassword' => $createPassword ? $createPassword : null,
 			]);
 		}
 
 		$userRepo = new UserRepository(Mimikyu::$app->db);
 
-		$user = new User(null, $username, $email, $password, Role::fromString($role));
+		$user = new User(null, $createUsername, $createEmail, $createPassword, Role::fromString($createRole));
 
 		$userRepo->create($user);
 
 		$this->view('./400007969/app/View/createResearcher.php', [
 			'title' => 'Admin | Create Researcher',
-			'role' => Role::from(Mimikyu::$app->session->getValue('role')),
-			'email' => Mimikyu::$app->session->getValue('email'),
-			'username' => Mimikyu::$app->session->getValue('username'),
+			'role' => $role,
+			'email' => $email,
+			'username' => $username,
 			'options' => $options,
 			'success' => 'Researcher created successfully!',
 		]);
